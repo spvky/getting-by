@@ -6,6 +6,7 @@ import rl "vendor:raylib"
 world: World
 screen_texture: rl.RenderTexture
 run: bool
+ui_font: rl.Font
 
 WINDOW_WIDTH: i32
 WINDOW_HEIGHT: i32
@@ -17,12 +18,14 @@ init :: proc() {
 	WINDOW_WIDTH = 1600
 	WINDOW_HEIGHT = 900
 	run = true
+	ui_font = load_font()
 	rl.InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Game")
 	screen_texture = rl.LoadRenderTexture(WINDOW_WIDTH, WINDOW_HEIGHT)
 	world = make_world()
 }
 
 update :: proc() {
+	update_camera()
 	render_scene()
 	draw_to_screen()
 }
