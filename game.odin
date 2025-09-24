@@ -21,7 +21,7 @@ init :: proc() {
 	ui_font = load_font()
 	rl.InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Game")
 	screen_texture = rl.LoadRenderTexture(WINDOW_WIDTH, WINDOW_HEIGHT)
-	world = make_world()
+	world = make_world(10)
 }
 
 update :: proc() {
