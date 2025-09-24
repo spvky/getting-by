@@ -27,7 +27,7 @@ var ENVIRONMENT_IS_SHELL = !ENVIRONMENT_IS_WEB && !ENVIRONMENT_IS_NODE && !ENVIR
 
 // --pre-jses are emitted after the Module integration code, so that they can
 // refer to Module (if they choose; they can also define Module)
-// include: /var/folders/fd/5cmpnkcj04d41zlxpbq3x_hr0000gn/T/tmp9xmcj27g.js
+// include: /var/folders/fd/5cmpnkcj04d41zlxpbq3x_hr0000gn/T/tmpg3x_hu5d.js
 
   Module['expectedDataFileDownloads'] ??= 0;
   Module['expectedDataFileDownloads']++;
@@ -138,6 +138,7 @@ var REMOTE_PACKAGE_SIZE = metadata['remote_package_size'];
         if (!check) throw msg + new Error().stack;
       }
 Module['FS_createPath']("/", "assets", true, true);
+Module['FS_createPath']("/assets", "fonts", true, true);
 Module['FS_createPath']("/assets", "textures", true, true);
 
       /** @constructor */
@@ -205,25 +206,25 @@ Module['FS_createPath']("/assets", "textures", true, true);
     }
 
     }
-    loadPackage({"files": [{"filename": "/assets/textures/checkerboard.png", "start": 0, "end": 1109}], "remote_package_size": 1109});
+    loadPackage({"files": [{"filename": "/assets/fonts/medodica.otf", "start": 0, "end": 35628}, {"filename": "/assets/fonts/medodica_licens.txt", "start": 35628, "end": 40062}, {"filename": "/assets/textures/checkerboard.png", "start": 40062, "end": 41171}], "remote_package_size": 41171});
 
   })();
 
-// end include: /var/folders/fd/5cmpnkcj04d41zlxpbq3x_hr0000gn/T/tmp9xmcj27g.js
-// include: /var/folders/fd/5cmpnkcj04d41zlxpbq3x_hr0000gn/T/tmpmde8lpso.js
+// end include: /var/folders/fd/5cmpnkcj04d41zlxpbq3x_hr0000gn/T/tmpg3x_hu5d.js
+// include: /var/folders/fd/5cmpnkcj04d41zlxpbq3x_hr0000gn/T/tmp0qwy8z8g.js
 
     // All the pre-js content up to here must remain later on, we need to run
     // it.
     if ((typeof ENVIRONMENT_IS_WASM_WORKER != 'undefined' && ENVIRONMENT_IS_WASM_WORKER) || (typeof ENVIRONMENT_IS_PTHREAD != 'undefined' && ENVIRONMENT_IS_PTHREAD) || (typeof ENVIRONMENT_IS_AUDIO_WORKLET != 'undefined' && ENVIRONMENT_IS_AUDIO_WORKLET)) Module['preRun'] = [];
     var necessaryPreJSTasks = Module['preRun'].slice();
-  // end include: /var/folders/fd/5cmpnkcj04d41zlxpbq3x_hr0000gn/T/tmpmde8lpso.js
-// include: /var/folders/fd/5cmpnkcj04d41zlxpbq3x_hr0000gn/T/tmp38lcb21e.js
+  // end include: /var/folders/fd/5cmpnkcj04d41zlxpbq3x_hr0000gn/T/tmp0qwy8z8g.js
+// include: /var/folders/fd/5cmpnkcj04d41zlxpbq3x_hr0000gn/T/tmpa977_59w.js
 
     if (!Module['preRun']) throw 'Module.preRun should exist because file support used it; did a pre-js delete it?';
     necessaryPreJSTasks.forEach((task) => {
       if (Module['preRun'].indexOf(task) < 0) throw 'All preRun tasks that exist before user pre-js code should remain after; did you replace Module or modify Module.preRun?';
     });
-  // end include: /var/folders/fd/5cmpnkcj04d41zlxpbq3x_hr0000gn/T/tmp38lcb21e.js
+  // end include: /var/folders/fd/5cmpnkcj04d41zlxpbq3x_hr0000gn/T/tmpa977_59w.js
 
 
 var arguments_ = [];
@@ -648,7 +649,7 @@ function updateMemoryViews() {
   HEAPU16 = new Uint16Array(b);
   HEAP32 = new Int32Array(b);
   HEAPU32 = new Uint32Array(b);
-  HEAPF32 = new Float32Array(b);
+  Module['HEAPF32'] = HEAPF32 = new Float32Array(b);
   HEAPF64 = new Float64Array(b);
   HEAP64 = new BigInt64Array(b);
   HEAPU64 = new BigUint64Array(b);
@@ -4069,6 +4070,13 @@ async function createWasm() {
       return 0;
     ;
   }
+
+  /** @type {function(...*):?} */
+  function _cos(
+  ) {
+  abort('missing function: cos');
+  }
+  _cos.stub = true;
 
   var readEmAsmArgsArray = [];
   var readEmAsmArgs = (sigPtr, buf) => {
@@ -7588,17 +7596,6 @@ async function createWasm() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   
   
   
@@ -9132,6 +9129,13 @@ async function createWasm() {
     };
 
   /** @type {function(...*):?} */
+  function _sin(
+  ) {
+  abort('missing function: sin');
+  }
+  _sin.stub = true;
+
+  /** @type {function(...*):?} */
   function _write(
   ) {
   abort('missing function: write');
@@ -9347,7 +9351,6 @@ missingLibrarySymbols.forEach(missingLibrarySymbol)
   'abort',
   'wasmMemory',
   'wasmExports',
-  'HEAPF32',
   'HEAPF64',
   'HEAP8',
   'HEAPU8',
@@ -9626,48 +9629,48 @@ function checkIncomingModuleAPI() {
   ignoredModuleProp('fetchSettings');
 }
 var ASM_CONSTS = {
-  129624: () => { if (document.fullscreenElement) return 1; },  
- 129670: () => { return document.getElementById('canvas').width; },  
- 129722: () => { return parseInt(document.getElementById('canvas').style.width); },  
- 129790: () => { document.exitFullscreen(); },  
- 129817: () => { setTimeout(function() { Module.requestFullscreen(false, false); }, 100); },  
- 129890: () => { if (document.fullscreenElement) return 1; },  
- 129936: () => { return document.getElementById('canvas').width; },  
- 129988: () => { return screen.width; },  
- 130013: () => { document.exitFullscreen(); },  
- 130040: () => { setTimeout(function() { Module.requestFullscreen(false, true); setTimeout(function() { canvas.style.width="unset"; }, 100); }, 100); },  
- 130173: () => { return window.innerWidth; },  
- 130199: () => { return window.innerHeight; },  
- 130226: () => { if (document.fullscreenElement) return 1; },  
- 130272: () => { return document.getElementById('canvas').width; },  
- 130324: () => { return parseInt(document.getElementById('canvas').style.width); },  
- 130392: () => { if (document.fullscreenElement) return 1; },  
- 130438: () => { return document.getElementById('canvas').width; },  
- 130490: () => { return screen.width; },  
- 130515: () => { return window.innerWidth; },  
- 130541: () => { return window.innerHeight; },  
- 130568: () => { if (document.fullscreenElement) return 1; },  
- 130614: () => { return document.getElementById('canvas').width; },  
- 130666: () => { return screen.width; },  
- 130691: () => { document.exitFullscreen(); },  
- 130718: () => { if (document.fullscreenElement) return 1; },  
- 130764: () => { return document.getElementById('canvas').width; },  
- 130816: () => { return parseInt(document.getElementById('canvas').style.width); },  
- 130884: () => { document.exitFullscreen(); },  
- 130911: ($0) => { document.getElementById('canvas').style.opacity = $0; },  
- 130969: () => { return screen.width; },  
- 130994: () => { return screen.height; },  
- 131020: () => { return window.screenX; },  
- 131047: () => { return window.screenY; },  
- 131074: ($0) => { navigator.clipboard.writeText(UTF8ToString($0)); },  
- 131127: ($0) => { document.getElementById("canvas").style.cursor = UTF8ToString($0); },  
- 131198: () => { document.getElementById('canvas').style.cursor = 'none'; },  
- 131255: ($0, $1, $2, $3) => { try { navigator.getGamepads()[$0].vibrationActuator.playEffect('dual-rumble', { startDelay: 0, duration: $3, weakMagnitude: $1, strongMagnitude: $2 }); } catch (e) { try { navigator.getGamepads()[$0].hapticActuators[0].pulse($2, $3); } catch (e) { } } },  
- 131511: ($0) => { document.getElementById('canvas').style.cursor = UTF8ToString($0); },  
- 131582: () => { if (document.fullscreenElement) return 1; },  
- 131628: () => { return window.innerWidth; },  
- 131654: () => { return window.innerHeight; },  
- 131681: () => { if (document.pointerLockElement) return 1; }
+  143336: () => { if (document.fullscreenElement) return 1; },  
+ 143382: () => { return document.getElementById('canvas').width; },  
+ 143434: () => { return parseInt(document.getElementById('canvas').style.width); },  
+ 143502: () => { document.exitFullscreen(); },  
+ 143529: () => { setTimeout(function() { Module.requestFullscreen(false, false); }, 100); },  
+ 143602: () => { if (document.fullscreenElement) return 1; },  
+ 143648: () => { return document.getElementById('canvas').width; },  
+ 143700: () => { return screen.width; },  
+ 143725: () => { document.exitFullscreen(); },  
+ 143752: () => { setTimeout(function() { Module.requestFullscreen(false, true); setTimeout(function() { canvas.style.width="unset"; }, 100); }, 100); },  
+ 143885: () => { return window.innerWidth; },  
+ 143911: () => { return window.innerHeight; },  
+ 143938: () => { if (document.fullscreenElement) return 1; },  
+ 143984: () => { return document.getElementById('canvas').width; },  
+ 144036: () => { return parseInt(document.getElementById('canvas').style.width); },  
+ 144104: () => { if (document.fullscreenElement) return 1; },  
+ 144150: () => { return document.getElementById('canvas').width; },  
+ 144202: () => { return screen.width; },  
+ 144227: () => { return window.innerWidth; },  
+ 144253: () => { return window.innerHeight; },  
+ 144280: () => { if (document.fullscreenElement) return 1; },  
+ 144326: () => { return document.getElementById('canvas').width; },  
+ 144378: () => { return screen.width; },  
+ 144403: () => { document.exitFullscreen(); },  
+ 144430: () => { if (document.fullscreenElement) return 1; },  
+ 144476: () => { return document.getElementById('canvas').width; },  
+ 144528: () => { return parseInt(document.getElementById('canvas').style.width); },  
+ 144596: () => { document.exitFullscreen(); },  
+ 144623: ($0) => { document.getElementById('canvas').style.opacity = $0; },  
+ 144681: () => { return screen.width; },  
+ 144706: () => { return screen.height; },  
+ 144732: () => { return window.screenX; },  
+ 144759: () => { return window.screenY; },  
+ 144786: ($0) => { navigator.clipboard.writeText(UTF8ToString($0)); },  
+ 144839: ($0) => { document.getElementById("canvas").style.cursor = UTF8ToString($0); },  
+ 144910: () => { document.getElementById('canvas').style.cursor = 'none'; },  
+ 144967: ($0, $1, $2, $3) => { try { navigator.getGamepads()[$0].vibrationActuator.playEffect('dual-rumble', { startDelay: 0, duration: $3, weakMagnitude: $1, strongMagnitude: $2 }); } catch (e) { try { navigator.getGamepads()[$0].hapticActuators[0].pulse($2, $3); } catch (e) { } } },  
+ 145223: ($0) => { document.getElementById('canvas').style.cursor = UTF8ToString($0); },  
+ 145294: () => { if (document.fullscreenElement) return 1; },  
+ 145340: () => { return window.innerWidth; },  
+ 145366: () => { return window.innerHeight; },  
+ 145393: () => { if (document.pointerLockElement) return 1; }
 };
 
 // Imports from the Wasm binary.
@@ -9727,6 +9730,8 @@ var wasmImports = {
   _abort_js: __abort_js,
   /** @export */
   clock_time_get: _clock_time_get,
+  /** @export */
+  cos: _cos,
   /** @export */
   emscripten_asm_const_int: _emscripten_asm_const_int,
   /** @export */
@@ -10218,39 +10223,17 @@ var wasmImports = {
   /** @export */
   glTexImage2D: _glTexImage2D,
   /** @export */
-  glTexParameteri: _glTexParameteri,
+  glTexParameterf: _glTexParameterf,
   /** @export */
-  glUniform1fv: _glUniform1fv,
+  glTexParameteri: _glTexParameteri,
   /** @export */
   glUniform1i: _glUniform1i,
   /** @export */
-  glUniform1iv: _glUniform1iv,
-  /** @export */
-  glUniform2fv: _glUniform2fv,
-  /** @export */
-  glUniform2iv: _glUniform2iv,
-  /** @export */
-  glUniform3fv: _glUniform3fv,
-  /** @export */
-  glUniform3iv: _glUniform3iv,
-  /** @export */
   glUniform4f: _glUniform4f,
-  /** @export */
-  glUniform4fv: _glUniform4fv,
-  /** @export */
-  glUniform4iv: _glUniform4iv,
   /** @export */
   glUniformMatrix4fv: _glUniformMatrix4fv,
   /** @export */
   glUseProgram: _glUseProgram,
-  /** @export */
-  glVertexAttrib1fv: _glVertexAttrib1fv,
-  /** @export */
-  glVertexAttrib2fv: _glVertexAttrib2fv,
-  /** @export */
-  glVertexAttrib3fv: _glVertexAttrib3fv,
-  /** @export */
-  glVertexAttrib4fv: _glVertexAttrib4fv,
   /** @export */
   glVertexAttribPointer: _glVertexAttribPointer,
   /** @export */
@@ -10305,6 +10288,8 @@ var wasmImports = {
   glfwTerminate: _glfwTerminate,
   /** @export */
   glfwWindowHint: _glfwWindowHint,
+  /** @export */
+  sin: _sin,
   /** @export */
   write: _write
 };

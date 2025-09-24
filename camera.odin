@@ -22,13 +22,29 @@ CameraMode :: enum {
 update_camera :: proc() {
 	frametime := rl.GetFrameTime()
 	camera := &world.camera
-	camera.yaw += m.to_radians_f32(90) * frametime
+	// camera.yaw += m.to_radians_f32(90) * frametime
+	delta: f32
+	rot_delta: f32
+	if rl.IsKeyDown(.W) {
+		delta += 1
+	}
+	if rl.IsKeyDown(.S) {
+		delta -= 1
+	}
+
+	if rl.IsKeyDown(.Q) {
+		rot_delta -= 1
+	}
+
+	if rl.IsKeyDown(.E) {
+		rot_delta += 1
+	}
+
+
+	camera.position.y += frametime * delta * 5
+	camera.yaw += frametime * rot_delta * m.to_radians_f32(90)
 	#partial switch camera.mode {
 	case .Free:
-		delta := rl.GetMouseDelta()
-		min: f32 = -89
-		max: f32 = 89
-
 		forward := l.normalize(
 			Vec3 {
 				m.cos(camera.yaw) * m.cos(camera.pitch),

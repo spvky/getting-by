@@ -1,6 +1,6 @@
 package main
 
-import rl "vendor:raylib"
+import "core:math"
 
 World :: struct {
 	camera: Camera,
@@ -9,11 +9,12 @@ World :: struct {
 make_world :: proc() -> World {
 	return World {
 		camera = Camera {
-			position = {0, 0, 0},
+			position = {0, 82, -174},
 			up = {0, 1, 0},
 			fovy = 45,
 			look_sensitivity = 10,
-			pitch = 0,
+			pitch = math.PI * -0.125,
+			yaw = math.PI * 0.5
 		},
 	}
 }
