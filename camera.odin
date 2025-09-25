@@ -10,8 +10,11 @@ Camera :: struct {
 	mode:             CameraMode,
 	pitch:            f32,
 	yaw:              f32,
+	current_pitch:		f32,
+	current_yaw:			f32,
 	forward:          Vec3,
 	right:            Vec3,
+	transation_speed: f32,
 }
 
 CameraMode :: enum {
@@ -34,13 +37,29 @@ update_camera :: proc() {
 
 
 	camera.yaw += frametime * rot_delta * m.to_radians_f32(90)
+
+	// Lerping rot values
+	yaw_difference := m.abs(m.abs(camera.current_yaw) - m.abs(camera.yaw))
+	pitch_difference := m.abs(m.abs(camera.current_pitch) - m.abs(camera.pitch))
+
+	if yaw_difference > 0.002 {
+		camera.current_yaw = m.lerp(camera.current_yaw, camera.yaw, frametime * camera.transation_speed)
+	} else {
+		camera.current_yaw = camera.yaw
+	}
+	if pitch_difference > 0.002 {
+		camera.current_pitch = m.lerp(camera.current_pitch, camera.pitch, frametime * camera.transation_speed)
+	} else {
+		camera.current_pitch = camera.pitch
+	}
+
 	#partial switch camera.mode {
 	case .Free:
 		forward := l.normalize(
 			Vec3 {
-				m.cos(camera.yaw) * m.cos(camera.pitch),
-				m.sin(camera.pitch),
-				m.sin(camera.yaw) * m.cos(camera.pitch),
+				m.cos(camera.current_yaw) * m.cos(camera.current_pitch),
+				m.sin(camera.current_pitch),
+				m.sin(camera.current_yaw) * m.cos(camera.current_pitch),
 			},
 		)
 		right := l.normalize(l.cross(forward, Vec3{0, 1, 0}))

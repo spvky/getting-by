@@ -17,14 +17,12 @@ test_walls :: proc(size: f32 = 100) {
 	wall_height := size / 5
 	wall_y_offset := size / 10
 	wall_thickness := size / 100
-	rl.DrawCubeV({0, wall_y_offset, wall_x_offset}, {size, wall_height, wall_thickness}, rl.RED)
-	rl.DrawCubeV({wall_x_offset, wall_y_offset, 0}, {wall_thickness, wall_height, size}, rl.GREEN)
-	rl.DrawCubeV(
-		{-wall_x_offset, wall_y_offset, 0},
-		{wall_thickness, wall_height, size},
-		rl.YELLOW,
-	)
-	rl.DrawCubeV({0, -wall_thickness / 2, 0}, {size, wall_thickness, size}, rl.WHITE)
+	rot_axis :Vec3={0,1,0}
+	uniform_scale :Vec3={1,1,1}
+	rl.DrawModelEx(models[.HORIZONTAL_WALL],{0, wall_y_offset, wall_x_offset}, rot_axis, 0, uniform_scale, rl.RED)
+	rl.DrawModelEx(models[.VERTICAL_WALL],{wall_x_offset, wall_y_offset, 0}, rot_axis, 0, uniform_scale, rl.GREEN)
+	rl.DrawModelEx(models[.VERTICAL_WALL],{-wall_x_offset, wall_y_offset, 0}, rot_axis, 0, uniform_scale, rl.YELLOW)
+	rl.DrawModelEx(models[.FLOOR], {0, -wall_thickness / 2, 0}, rot_axis,0,uniform_scale, rl.WHITE)
 }
 
 draw_to_screen :: proc() {

@@ -4,6 +4,7 @@ import "core:c"
 import rl "vendor:raylib"
 
 world: World
+models: [Model_Tag]rl.Model
 screen_texture: rl.RenderTexture
 run: bool
 ui_font: rl.Font
@@ -22,6 +23,7 @@ init :: proc() {
 	rl.InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Game")
 	screen_texture = rl.LoadRenderTexture(WINDOW_WIDTH, WINDOW_HEIGHT)
 	world = make_world(50)
+	models = load_models(50)
 }
 
 update :: proc() {

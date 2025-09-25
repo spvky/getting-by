@@ -16,6 +16,7 @@ make_world :: proc(size: f32 = 100) -> World {
 			look_sensitivity = 10,
 			pitch = math.PI * -0.125,
 			yaw = math.PI * 0.5,
+			transation_speed = 5
 		},
 		player = Player{position = {0, 1, 0}},
 	}
