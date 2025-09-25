@@ -22,15 +22,7 @@ CameraMode :: enum {
 update_camera :: proc() {
 	frametime := rl.GetFrameTime()
 	camera := &world.camera
-	// camera.yaw += m.to_radians_f32(90) * frametime
-	delta: f32
 	rot_delta: f32
-	if rl.IsKeyDown(.W) {
-		delta += 1
-	}
-	if rl.IsKeyDown(.S) {
-		delta -= 1
-	}
 
 	if rl.IsKeyDown(.Q) {
 		rot_delta -= 1
@@ -41,7 +33,6 @@ update_camera :: proc() {
 	}
 
 
-	camera.position.y += frametime * delta * 5
 	camera.yaw += frametime * rot_delta * m.to_radians_f32(90)
 	#partial switch camera.mode {
 	case .Free:

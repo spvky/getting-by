@@ -4,6 +4,7 @@ import "core:math"
 
 World :: struct {
 	camera: Camera,
+	player: Player,
 }
 
 make_world :: proc(size: f32 = 100) -> World {
@@ -14,7 +15,8 @@ make_world :: proc(size: f32 = 100) -> World {
 			fovy = 45,
 			look_sensitivity = 10,
 			pitch = math.PI * -0.125,
-			yaw = math.PI * 0.5
+			yaw = math.PI * 0.5,
 		},
+		player = Player{position = {0, 1, 0}},
 	}
 }

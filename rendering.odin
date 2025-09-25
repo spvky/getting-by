@@ -4,9 +4,10 @@ import rl "vendor:raylib"
 
 render_scene :: proc() {
 	rl.BeginTextureMode(screen_texture)
-	rl.ClearBackground({0, 12, 240, 255})
+	rl.ClearBackground(rl.BLACK)
 	rl.BeginMode3D(world.camera)
-	test_walls(10)
+	render_player()
+	test_walls(50)
 	rl.EndMode3D()
 	rl.EndTextureMode()
 }
@@ -16,10 +17,14 @@ test_walls :: proc(size: f32 = 100) {
 	wall_height := size / 5
 	wall_y_offset := size / 10
 	wall_thickness := size / 100
-	rl.DrawCubeV({0,wall_y_offset,wall_x_offset}, {size,wall_height,wall_thickness}, rl.RED)
-	rl.DrawCubeV({wall_x_offset,wall_y_offset, 0}, {wall_thickness, wall_height, size}, rl.GREEN)
-	rl.DrawCubeV({-wall_x_offset,wall_y_offset, 0}, {wall_thickness, wall_height, size}, rl.YELLOW)
-	rl.DrawCubeV({0, -wall_thickness/2, 0}, {size, wall_thickness, size}, rl.WHITE)
+	rl.DrawCubeV({0, wall_y_offset, wall_x_offset}, {size, wall_height, wall_thickness}, rl.RED)
+	rl.DrawCubeV({wall_x_offset, wall_y_offset, 0}, {wall_thickness, wall_height, size}, rl.GREEN)
+	rl.DrawCubeV(
+		{-wall_x_offset, wall_y_offset, 0},
+		{wall_thickness, wall_height, size},
+		rl.YELLOW,
+	)
+	rl.DrawCubeV({0, -wall_thickness / 2, 0}, {size, wall_thickness, size}, rl.WHITE)
 }
 
 draw_to_screen :: proc() {
